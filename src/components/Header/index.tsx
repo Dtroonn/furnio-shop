@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './header.module.scss';
 import clsx from 'clsx';
 import { Menu } from './Menu';
+import { Link } from 'react-router-dom';
 
 export const Header: React.FC = () => {
     console.log(classes.header__container);
@@ -10,9 +11,9 @@ export const Header: React.FC = () => {
             <div className={clsx('_container', classes.header__container)}>
                 <div className={classes['header-content-left']}>
                     <div className={classes['header-content-left__column']}>
-                        <a href="/" className={classes['header-content-left__logo']}>
+                        <Link to="/" className={classes['header-content-left__logo']}>
                             Funiro.
-                        </a>
+                        </Link>
                     </div>
                     <div className={classes['header-content-left__column']}>
                         <Menu />

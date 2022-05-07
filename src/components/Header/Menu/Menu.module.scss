@@ -1,2 +1,42 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
 .menu {
+    li {
+        position: relative;
+    }
+}
+
+.menu__body {}
+
+.menu__list {
+    display: flex;
+    @include adaptive-value('margin-right', -22, -7.5, 1);
+    @include adaptive-value('margin-left', -22, -7.5, 1);
+    &>li {
+        @include adaptive-value('padding-right', 22, 7.5, 1);
+        @include adaptive-value('padding-left', 22, 7.5, 1);
+        &:hover {
+            .sub-menu-list {
+                display: block;
+            }
+        }
+    }
+}
+
+.menu__link {
+    color: $mainColor;
+    font-weight: 500;
+}
+
+.sub-menu-list {
+    display: none;
+    position: absolute;
+    top: 10px;
+    &>li {
+        background-color: $orangeColor;
+    }
+    &>li>a {
+        color: $whiteColor;
+    }
 }

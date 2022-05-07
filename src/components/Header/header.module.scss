@@ -12,9 +12,14 @@
 
 .header-content-left {
     display: flex;
+    align-items: center;
+    @include adaptive-value('margin-right', -21, -7.5, 1);
+    @include adaptive-value('margin-left', -21, -7.5, 1);
 }
 
 .header-content-left__column {
+    @include adaptive-value('padding-right', 21, 7.5, 1);
+    @include adaptive-value('padding-left', 21, 7.5, 1);
 }
 
 .header-content-left__logo {
