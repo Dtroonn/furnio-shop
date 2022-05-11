@@ -6,7 +6,8 @@
             "services": ["services"],
             "pages" : ["pages"],
             "hooks": ["hooks"],
-            "styles": ["styles"]
+            "styles": ["styles"],
+            "assets": ["assets"],
         }
     }
 }

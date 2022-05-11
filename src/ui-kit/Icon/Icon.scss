@@ -1,0 +1,35 @@
+.icon-cart {
+  font-size: 22px;
+  &:before {
+    content: "\e908";
+    // color: #262f56;
+  }
+}
+.icon-search:before {
+  content: "\e905";
+}
+.icon-location:before {
+  content: "\e900";
+}
+.icon-arrow-down:before {
+  content: "\e901";
+}
+.icon-arrow-link:before {
+  content: "\e902";
+}
+.icon-like {
+  font-size: 22px;
+  &:before {
+    content: "\e903";
+  }
+}
+.icon-phone:before {
+  content: "\e904";
+}
+.icon-send:before {
+  content: "\e906";
+}
+.icon-share:before {
+  content: "\e907";
+}
+  

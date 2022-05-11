@@ -1,51 +1,87 @@
-import React from 'react';
+import clsx from "clsx";
+import React from "react";
+import { Icon } from "ui-kit/Icon";
+import { MenuIcon } from "ui-kit/icons/MenuIcon";
 
-import classes from './Menu.module.scss';
+import classes from "./Menu.module.scss";
+import { MenuItem } from "./MenuItem";
+import { IMenuItemProps } from "./MenuItem/MenuItem.props.interface";
 
-export const Menu = () => {
+const menuItems: IMenuItemProps[] = [
+    {
+        title: "Products",
+        src: "",
+        items: [
+            { title: "Подпункт 1", src: "" },
+            { title: "Подпункт 2", src: "" },
+            { title: "Подпункт 3", src: "" },
+            { title: "Подпункт 4", src: "" },
+        ],
+    },
+    {
+        title: "Rooms",
+        src: "",
+        items: [
+            { title: "Подпункт 1", src: "" },
+            { title: "Подпункт 2", src: "" },
+        ],
+    },
+    {
+        title: "Inspirations",
+        src: "",
+    },
+];
+
+export const Menu: React.FC = () => {
+    const [openBurger, setOpenBurger] = React.useState(false);
+
+    const toggleOpenBurger = () => {
+        setOpenBurger((prev) => !prev);
+    };
+
     return (
         <div className={classes.menu}>
-            <div className={classes['menu__body-wrapper']}>
+            <div
+                onClick={toggleOpenBurger}
+                style={{ position: "relative", zIndex: 4 }}
+                className={classes["menu__icon-wrapper"]}>
+                <MenuIcon active={openBurger} />
+            </div>
+
+            <div
+                className={clsx(classes["menu__body-wrapper"], {
+                    [classes["menu__body-wrapper_active"]]: openBurger,
+                })}>
                 <nav className={classes.menu__body}>
                     <ul className={classes.menu__list}>
-                        <li>
+                        {menuItems.map((item) => (
+                            <MenuItem title={item.title} src={item.src} items={item.items} />
+                        ))}
+                        {/* <li>
                             <a href="" className={classes.menu__link}>
-                                Products
-                                <svg
-                                    className={classes.menu__arrow}
-                                    width="14"
-                                    height="9"
-                                    viewBox="0 0 14 9"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.8333 1.50012L7.00001 7.33346L1.16668 1.50012"
-                                        stroke="#3A3A3A"
-                                        stroke-width="1.8"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
+                                <span>Products</span>
+                                <div className={classes["menu__icon-arrow-wrapper"]}>
+                                    <Icon className={classes.menu__arrow} icon="arrow-down" />
+                                </div>
                             </a>
-
-                            <ul className={classes['sub-menu-list']}>
+                            <ul className={classes["sub-menu-list"]}>
                                 <li>
-                                    <a href="" className={classes['sub-menu-list__link']}>
+                                    <a href="" className={classes["sub-menu-list__link"]}>
                                         Подпункт1
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" className={classes['sub-menu-list__link']}>
+                                    <a href="" className={classes["sub-menu-list__link"]}>
                                         Подпункт2
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" className={classes['sub-menu-list__link']}>
+                                    <a href="" className={classes["sub-menu-list__link"]}>
                                         Подпункт3
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" className={classes['sub-menu-list__link']}>
+                                    <a href="" className={classes["sub-menu-list__link"]}>
                                         Подпункт4
                                     </a>
                                 </li>
@@ -53,32 +89,19 @@ export const Menu = () => {
                         </li>
                         <li>
                             <a href="" className={classes.menu__link}>
-                                Rooms
-                                <svg
-                                    className={classes.menu__arrow}
-                                    width="14"
-                                    height="9"
-                                    viewBox="0 0 14 9"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M12.8333 1.50012L7.00001 7.33346L1.16668 1.50012"
-                                        stroke="#3A3A3A"
-                                        stroke-width="1.8"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                    />
-                                </svg>
+                                <span>Rooms</span>
+                                <div className={classes["menu__icon-arrow-wrapper"]}>
+                                    <Icon className={classes.menu__arrow} icon="arrow-down" />
+                                </div>
                             </a>
-
-                            <ul className={classes['sub-menu-list']}>
+                            <ul className={classes["sub-menu-list"]}>
                                 <li>
-                                    <a href="" className={classes['sub-menu-list__link']}>
+                                    <a href="" className={classes["sub-menu-list__link"]}>
                                         Подпункт1
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="" className={classes['sub-menu-list__link']}>
+                                    <a href="" className={classes["sub-menu-list__link"]}>
                                         Подпункт2
                                     </a>
                                 </li>
@@ -86,9 +109,9 @@ export const Menu = () => {
                         </li>
                         <li>
                             <a href="" className={classes.menu__link}>
-                                Inspirations
+                                <span>Inspirations</span>
                             </a>
-                        </li>
+                        </li> */}
                     </ul>
                 </nav>
             </div>

@@ -3,27 +3,91 @@
 
 .header {
     padding: 40px 0;
-    background: #f9f1e7;
-}
+    position: relative;
+    @media (max-width: ($md2+px)) {
+        padding: 20px 0;
+    }
+    &:before {
+        content: '';
+        background-color: #F9F1E7;
+        width: 65%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    &:after {
+        content: '';
+        background-color: $lightYellowColor;
+        width: 35%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
 
-.header__container {
-    display: flex;
+    &__container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 2;
+    }
 }
 
 .header-content-left {
     display: flex;
     align-items: center;
-    @include adaptive-value('margin-right', -21, -7.5, 1);
-    @include adaptive-value('margin-left', -21, -7.5, 1);
+    margin: 0 -21px;
+    position: relative;
+    z-index: 4;
+    @media (max-width: ($md1+px)) {
+        margin: 0 -15px;
+    }
+
+    &__column {
+        padding: 0 21px;
+        &:last-child {
+            width: 472px;
+            @media (max-width: ($md1+px)) {
+                width: 350px;
+            }
+
+        }
+
+        @media (max-width: ($md1+px)) {
+            padding: 0 15px;
+        }
+    }
+
+    &__logo {
+        color: #000;
+        font-weight: 700;
+        @include adaptive-value('font-size', 24, 18, 1);
+    }
 }
 
-.header-content-left__column {
-    @include adaptive-value('padding-right', 21, 7.5, 1);
-    @include adaptive-value('padding-left', 21, 7.5, 1);
+.header-content-right {
+    margin: 0 0 0 15px;
+    &__actions {
+       
+    }
 }
 
-.header-content-left__logo {
-    color: #000;
-    font-weight: 700;
-    @include adaptive-value('font-size', 24, 18, 1);
+.actions-header {
+    display: flex;
+    align-items: center;
+    @include adaptive-value('margin-right', -16, -8, 1);
+    @include adaptive-value('margin-left', -16, -8, 1);
+    &__item {
+        position: relative;
+        z-index: 4;
+        @include adaptive-value('padding-left', 16, 8, 1);
+        @include adaptive-value('padding-right', 16, 8, 1);
+    }
+
+    &__menu {
+        @include adaptive-value('padding-left', 16, 8, 1);
+        @include adaptive-value('padding-right', 16, 8, 1);
+    }
 }
