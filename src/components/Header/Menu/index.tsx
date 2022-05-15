@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import React from "react";
-import { Icon } from "ui-kit/Icon";
 import { MenuIcon } from "ui-kit/icons/MenuIcon";
 
 import classes from "./Menu.module.scss";
@@ -10,7 +9,7 @@ import { IMenuItemProps } from "./MenuItem/MenuItem.props.interface";
 const menuItems: IMenuItemProps[] = [
     {
         title: "Products",
-        src: "",
+        src: "/products",
         items: [
             { title: "Подпункт 1", src: "" },
             { title: "Подпункт 2", src: "" },
@@ -54,64 +53,14 @@ export const Menu: React.FC = () => {
                 })}>
                 <nav className={classes.menu__body}>
                     <ul className={classes.menu__list}>
-                        {menuItems.map((item) => (
-                            <MenuItem title={item.title} src={item.src} items={item.items} />
+                        {menuItems.map((item, index) => (
+                            <MenuItem
+                                key={index}
+                                title={item.title}
+                                src={item.src}
+                                items={item.items}
+                            />
                         ))}
-                        {/* <li>
-                            <a href="" className={classes.menu__link}>
-                                <span>Products</span>
-                                <div className={classes["menu__icon-arrow-wrapper"]}>
-                                    <Icon className={classes.menu__arrow} icon="arrow-down" />
-                                </div>
-                            </a>
-                            <ul className={classes["sub-menu-list"]}>
-                                <li>
-                                    <a href="" className={classes["sub-menu-list__link"]}>
-                                        Подпункт1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" className={classes["sub-menu-list__link"]}>
-                                        Подпункт2
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" className={classes["sub-menu-list__link"]}>
-                                        Подпункт3
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" className={classes["sub-menu-list__link"]}>
-                                        Подпункт4
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="" className={classes.menu__link}>
-                                <span>Rooms</span>
-                                <div className={classes["menu__icon-arrow-wrapper"]}>
-                                    <Icon className={classes.menu__arrow} icon="arrow-down" />
-                                </div>
-                            </a>
-                            <ul className={classes["sub-menu-list"]}>
-                                <li>
-                                    <a href="" className={classes["sub-menu-list__link"]}>
-                                        Подпункт1
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" className={classes["sub-menu-list__link"]}>
-                                        Подпункт2
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="" className={classes.menu__link}>
-                                <span>Inspirations</span>
-                            </a>
-                        </li> */}
                     </ul>
                 </nav>
             </div>

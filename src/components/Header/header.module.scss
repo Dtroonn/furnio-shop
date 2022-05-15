@@ -5,7 +5,7 @@
     padding: 40px 0;
     position: relative;
     @media (max-width: ($md2+px)) {
-        padding: 20px 0;
+        padding: 10px 0;
     }
     &:before {
         content: '';
@@ -53,6 +53,10 @@
                 width: 350px;
             }
 
+            @media (max-width: ($md2+px)) {
+                width: auto;
+            }
+
         }
 
         @media (max-width: ($md1+px)) {
@@ -63,7 +67,7 @@
     &__logo {
         color: #000;
         font-weight: 700;
-        @include adaptive-value('font-size', 24, 18, 1);
+        @include adaptive-value('font-size', 24, 22, 1);
     }
 }
 
@@ -84,10 +88,41 @@
         z-index: 4;
         @include adaptive-value('padding-left', 16, 8, 1);
         @include adaptive-value('padding-right', 16, 8, 1);
+
+        &_search {
+            z-index: 5;
+        }
+
+        &_menu {
+            z-index: 3;
+        }
     }
 
-    &__menu {
-        @include adaptive-value('padding-left', 16, 8, 1);
-        @include adaptive-value('padding-right', 16, 8, 1);
+    &__link {
+        color: $mainColor;
+        transition: 0.3s ease 0s;
+        @media (min-width: ($md2+px)) {
+            &:hover {
+                color: $orangeColor;
+            }
+        }
+    }
+
+    &__icon {
+        @media (max-width: ($md2+px)) {
+            font-size: 27px !important;
+
+            &_search {
+                font-size: 25px !important;
+            }
+        }
+
+        @media (max-width: 360px) {
+            font-size: 24px !important;
+            &_search {
+                font-size: 22px !important;
+            }
+        }
+
     }
 }

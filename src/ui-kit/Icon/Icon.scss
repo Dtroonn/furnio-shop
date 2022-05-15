@@ -5,9 +5,13 @@
     // color: #262f56;
   }
 }
-.icon-search:before {
-  content: "\e905";
+.icon-search {
+  font-size: 16px;
+  &:before {
+    content: "\e905";
+  }
 }
+
 .icon-location:before {
   content: "\e900";
 }

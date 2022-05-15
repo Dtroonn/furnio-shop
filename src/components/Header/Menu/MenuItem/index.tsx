@@ -1,33 +1,48 @@
-import React from "react";
+import React, { SyntheticEvent } from "react";
 
 import { Icon } from "ui-kit/Icon";
 
 import { IMenuItemProps } from "./MenuItem.props.interface";
 
 import classes from "../Menu.module.scss";
+import { Link } from "react-router-dom";
+import { Md2Headercontext } from "components/Header";
+import { SubMenu } from "../SubMenu";
+import { SlideToggle } from "ui-kit/SlideToggle";
+import clsx from "clsx";
 
 export const MenuItem: React.FC<IMenuItemProps> = ({ title, src, items }) => {
+    const isMd2 = React.useContext(Md2Headercontext);
+    const [openSubMenu, setOpenSubMenu] = React.useState(false);
+
+    const handleClickArrow = (e: SyntheticEvent) => {
+        setOpenSubMenu((prev) => !prev);
+        e.stopPropagation();
+        e.preventDefault();
+    };
+
     return (
         <li>
-            <a href="" className={classes["menu__link"]}>
+            <Link to={src} className={classes["menu__link"]}>
                 <span>{title}</span>
                 {items && (
-                    <div className={classes["menu__icon-arrow-wrapper"]}>
+                    <div
+                        onClick={isMd2 ? handleClickArrow : undefined}
+                        className={clsx(classes["menu__icon-arrow-wrapper"], {
+                            [classes.active]: openSubMenu,
+                        })}>
                         <Icon className={classes.menu__arrow} icon="arrow-down" />
                     </div>
                 )}
-            </a>
-            {items && (
-                <ul className={classes["sub-menu-list"]}>
-                    {items.map((item) => (
-                        <li>
-                            <a href="" className={classes["sub-menu-list__link"]}>
-                                {item.title}
-                            </a>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            </Link>
+            {items &&
+                (isMd2 ? (
+                    <SlideToggle open={openSubMenu}>
+                        <SubMenu items={items} />
+                    </SlideToggle>
+                ) : (
+                    <SubMenu items={items} />
+                ))}
         </li>
     );
 };

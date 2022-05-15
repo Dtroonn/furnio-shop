@@ -1,17 +1,19 @@
-import React from "react"
-import { Icon } from "ui-kit/Icon"
+import clsx from "clsx";
+import React from "react";
+import { Icon } from "ui-kit/Icon";
 
-import classes from "./SearchField.module.scss"
+import classes from "./SearchField.module.scss";
+import { ISearchFieldProps } from "./SearchField.props.interface";
 
-export const SearchField = () => {
+export const SearchField: React.FC<ISearchFieldProps> = ({ className, placeholder = "" }) => {
     return (
-        <div className={classes.search}>
-            <div className={classes["search__icon-wrapper"]}>
+        <form className={clsx(classes.search, className)}>
+            <button type="submit" className={classes["search__icon-button"]}>
                 <Icon icon="search" />
-            </div>
+            </button>
             <div className={classes["search__input-wrapper"]}>
-                <input className={classes.search__input} />
+                <input placeholder={placeholder} className={classes.search__input} />
             </div>
-        </div>
-    )
-}
+        </form>
+    );
+};
