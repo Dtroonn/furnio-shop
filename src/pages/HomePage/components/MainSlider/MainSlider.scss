@@ -1,0 +1,12 @@
+.slider-main {
+    &__content {
+        transform: scale(0);
+        transition: all 0.8s ease 0s;
+    }
+
+    .swiper-slide-active {
+        .slider-main__content {
+            transform: scale(1);
+        }
+    }
+}

@@ -1,0 +1,47 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.products {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &__title {
+        @include adaptive-value('margin-bottom', 32, 15, 1);
+        text-align: center;
+    }
+
+    &__row {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -16px;
+        @media (max-width: ($md2+px)) {
+             margin: 0 -10px;
+        }
+
+        @media (max-width: ($md4+px)) {
+            display: block
+        }
+
+    }
+
+    &__column {
+        flex: 0 1 25%;
+        padding: 0 16px;
+        margin: 0 0 32px 0;
+        @media (max-width: ($md1+px)) {
+            flex: 0 1 33.333%;
+        }
+
+        @media (max-width: ($md2+px)) {
+            padding: 0 10px;
+        }
+
+        @media (max-width: ($md3+px)) {
+            flex: 0 1 50%;
+        }
+    }
+
+    &__btn {
+        width: 245px;
+    }
+}

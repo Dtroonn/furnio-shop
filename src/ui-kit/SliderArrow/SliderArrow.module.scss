@@ -1,0 +1,30 @@
+@import 'styles/variables.scss';
+
+.arrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    transform: rotate(-90deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $lightOrangeColor;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+    &:hover {
+        background-color: $orangeColor;
+        .arrow__icon {
+            color: $whiteColor;
+        }
+    }
+
+    &__icon {
+        color: $orangeColor;
+        transition: all 0.3s ease 0s;
+        font-size: 16px;
+    }
+
+    &_left {
+        transform: rotate(90deg);
+    }
+}

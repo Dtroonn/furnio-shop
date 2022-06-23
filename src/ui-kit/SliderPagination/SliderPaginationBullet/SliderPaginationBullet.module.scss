@@ -1,0 +1,15 @@
+.bullet {
+    width: 27px;
+    height: 27px;
+    border-radius: 50%;
+    padding: 8px;
+    border: 1px solid transparent;
+    &__dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: #D8D8D8;
+    }
+
+
+}
