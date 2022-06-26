@@ -1,0 +1,12 @@
+.slider-rooms {
+    .swiper-slide-active,.swiper-slide-duplicate-active {
+        height: 100%;
+        width: 404px !important;
+        @media (max-width: 404px) {
+            width: 100% !important;
+        }
+        .slider-rooms__slide-content {
+            transform: scale(1);
+        }
+    }
+}

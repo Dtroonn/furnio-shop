@@ -4,7 +4,7 @@
         transition: all 0.8s ease 0s;
     }
 
-    .swiper-slide-active {
+    .swiper-slide-active,.swiper-slide-duplicate-active {
         .slider-main__content {
             transform: scale(1);
         }

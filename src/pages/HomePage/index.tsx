@@ -3,6 +3,7 @@ import { Advantages } from "./components/Advantages";
 
 import { MainSlider } from "./components/MainSlider";
 import { Products } from "./components/Products";
+import { RoomsSlider } from "./components/RoomsSlider";
 
 let text = "kawdkwakd <b>hello</b> hyayya";
 
@@ -16,6 +17,7 @@ export const HomePage: React.FC = () => {
             <MainSlider />
             <Advantages />
             <Products />
+            <RoomsSlider/>
         </div>
     );
 };

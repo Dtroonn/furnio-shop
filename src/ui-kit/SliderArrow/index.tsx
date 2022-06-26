@@ -6,7 +6,7 @@ import { Icon } from "../Icon";
 
 const colorsClassNames = {
     //пустой т.к он по дефолту
-    orange: "",
+    orange: classes.arrow_orange,
     white: classes.arrow_white,
 };
 

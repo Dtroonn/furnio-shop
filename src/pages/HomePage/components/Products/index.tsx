@@ -61,9 +61,8 @@ export const Products = () => {
 
                 <div className={classes["products__row"]}>
                     {mockItems.map((product, index) => (
-                        <div className={classes["products__column"]}>
+                        <div key={index} className={classes["products__column"]}>
                             <Product
-                                key={index}
                                 imgUrl={product.imgUrl}
                                 name={product.name}
                                 description={product.description}

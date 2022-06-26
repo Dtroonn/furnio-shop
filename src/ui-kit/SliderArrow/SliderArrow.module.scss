@@ -8,23 +8,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: $lightOrangeColor;
     cursor: pointer;
     transition: all 0.3s ease 0s;
-    &:hover {
-        background-color: $orangeColor;
-        .arrow__icon {
-            color: $whiteColor;
-        }
-    }
 
     &__icon {
-        color: $orangeColor;
         transition: all 0.3s ease 0s;
         font-size: 16px;
     }
 
     &_left {
         transform: rotate(90deg);
+    }
+
+    &_orange {
+        background-color: $lightOrangeColor;
+        .arrow__icon {
+            color: $orangeColor;
+        }
+        
+        &:hover {
+            background-color: $orangeColor;
+            .arrow__icon {
+                color: $whiteColor;
+            }
+        }
+    }
+
+    &_white {
+        background-color: $whiteColor;
+
+        .arrow__icon {
+            color: $orangeColor;
+        }
+
+        &:hover {
+            background-color: $blackColor;
+            .arrow__icon {
+                color: $whiteColor;
+            }
+        }
     }
 }

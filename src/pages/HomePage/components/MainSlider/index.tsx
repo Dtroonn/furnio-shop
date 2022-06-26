@@ -54,6 +54,7 @@ export const MainSlider: React.FC = () => {
                 <div className={clsx("_container", classes["main-slider__slider-container"])}>
                     <div className={classes["slider-main"]}>
                         <Swiper
+                            simulateTouch={false}
                             observeParents
                             observer
                             modules={[Navigation, Pagination, Autoplay]}
