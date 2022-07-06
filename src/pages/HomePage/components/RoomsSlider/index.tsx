@@ -1,6 +1,6 @@
 import clsx from "clsx";
 import React from "react";
-import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper";
 import "swiper/css";
 
@@ -19,7 +19,7 @@ import { Icon } from "ui-kit/Icon";
 import { useBreakpoint } from "hooks/useBreakpoint";
 
 export const RoomsSlider = () => {
-    const isMd1 = useBreakpoint("max-width", 1288);
+    const isMd1 = useBreakpoint("max-width", breakpointsTypes.md1 + 48);
 
     return (
         <div className={classes["rooms-slider"]}>
@@ -41,7 +41,7 @@ export const RoomsSlider = () => {
                         simulateTouch={false}
                         observeParents
                         observer
-                        modules={[Navigation, Pagination]}
+                        modules={[Navigation, Pagination, Autoplay]}
                         pagination={{
                             clickable: true,
                             el: ".slider-rooms__pagination",
@@ -53,12 +53,10 @@ export const RoomsSlider = () => {
                         }}
                         slidesPerView={1}
                         loop
-                        // autoplay={{
-                        //     disableOnInteraction: false,
-                        // }}
-                        // // loopedSlides={3}
+                        autoplay={{
+                            disableOnInteraction: false,
+                        }}
                         loopAdditionalSlides={4}
-                        // loopedSlides={4}
                         watchOverflow
                         speed={800}
                         breakpoints={{

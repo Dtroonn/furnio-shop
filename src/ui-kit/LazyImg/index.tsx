@@ -1,0 +1,21 @@
+import { useIntersection } from 'hooks/useIntersection'
+import React from 'react'
+import { AdaptiveImage } from 'ui-kit/Image';
+
+//@ts-ignore
+export const LazyImg = ({ url, className }) => {
+    const [isShowImg, setIsShowImg] = React.useState(false);
+    const imgRef = React.useRef(null)
+
+    
+    const handleIntersected = () => {
+        setIsShowImg(true)
+    }
+
+    useIntersection({targetRef: imgRef, onIntersected: handleIntersected})
+
+
+  return (
+    <AdaptiveImage url={isShowImg ? url : ''}  ref={imgRef} className={className}/>
+  )
+}

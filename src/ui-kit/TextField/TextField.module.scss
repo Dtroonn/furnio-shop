@@ -1,0 +1,16 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.input {
+    padding: 12px;
+    font-size: 14px;
+    height: 45px;
+    color: $blackColor;
+    &::placeholder {
+        color: $darkGrayColor;
+    }
+
+    &.fullWidth {
+        width: 100%;;
+    }
+}

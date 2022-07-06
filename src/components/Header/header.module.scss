@@ -3,11 +3,14 @@
 
 .header {
     padding: 40px 0;
-    position: fixed;
+    position: relative;
     z-index: 1000;
     width: 100%;
     @media (max-width: ($md2+px)) {
         padding: 10px 0;
+        position: fixed;
+        top: 0;
+        left: 0;
     }
     &:before {
         content: '';

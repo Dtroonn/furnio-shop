@@ -7,11 +7,12 @@ import { Text } from "ui-kit/Text";
 import classes from "./Products.module.scss";
 
 import roomPng from "assets/room.png";
+import bedjpg from "assets/bed.jpg";
 import { Button } from "ui-kit/Button";
 
 const mockItems = [
     {
-        imgUrl: roomPng,
+        imgUrl: bedjpg,
         name: "Syltherine",
         description: "Stylish cafe chair",
         price: 292191293.22,

@@ -6,9 +6,15 @@
     justify-content: center;
     align-items: center;
     font-weight: 600;
+    transition: all 0.3s ease 0s;
     &_orange {
         background: $orangeColor;
         color: $whiteColor;
+        @media (any-hover: hover) {
+           &:hover {
+            background: $darkOrangeColor;
+           }
+        }
     }
 
     &_white {

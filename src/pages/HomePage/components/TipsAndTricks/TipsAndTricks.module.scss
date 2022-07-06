@@ -1,0 +1,96 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.tips-and-tricks {
+    @include adaptive-value('margin-bottom', 44, 35, 1);
+
+    &__container {
+        @media (max-width: ($md1 + 48px)) {
+            max-width: 970px !important;
+        }
+    }
+
+    &__title {
+        @include adaptive-value('margin-bottom', 32, 15, 1);
+        text-align: center;
+    }
+}
+
+.tips-and-tricks-slider {
+    position: relative;
+
+    &__slider {
+        padding-bottom: 30px;
+        @media (max-width: ($md2+px)) {
+            padding-bottom: 15px;
+        }
+
+        @media (max-width: ($md3+px)) {
+            margin: 0 -12px;
+        }
+
+    }
+
+    &__slider-wrapper {
+        display: flex;
+    }
+
+    &__slide {
+        // height: auto;
+    }
+
+    &__link {
+        background-color: $whiteColor;
+        transition: all 0.3s ease 0s;
+        display: block;
+        height: 100%;
+        &_active {
+            @media (min-width: ($md2+px)) {
+                box-shadow: 1px 8px 20px 1px rgba(34, 60, 80, 0.2);
+            }
+        }
+    }
+
+    &__controls {
+        display: flex;
+        justify-content: center;
+    }
+
+
+    &__navigation {
+        @media (max-width: ($md2+px)) {
+            display: none;
+        }
+    }
+
+    &__arrow {
+        position: absolute;
+        top: 161px;
+        z-index: 2;
+        @media (max-width: ($md1 + 48px)) {
+            top: 111px;
+        }
+        &_prev {
+            left: 0;
+            transform: translateX(-50%) rotate(90deg);
+            @media (max-width: ($md2 + 48px + 10px)) {
+                transform: rotate(90deg);
+                left: 10px;
+            }
+            
+        }
+
+        &_next {
+            right: 0;
+            transform: translateX(50%) rotate(-90deg);
+            @media (max-width: ($md2 + 48px + 10px)) {
+                transform: rotate(-90deg);
+                right: 10px;
+            }
+        }
+    }
+
+    &__pagination {
+        @include adaptive-value('margin-top', 10, 0, 1);
+    }
+}

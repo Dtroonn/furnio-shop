@@ -19,9 +19,14 @@
              margin: 0 -10px;
         }
 
-        @media (max-width: ($md4+px)) {
-            display: block
+        @media (max-width: ($md3+px)) {
+            margin: 0 -7px;
         }
+
+        @media (max-width: ($md4+px)) {
+            display: block;
+        }
+
 
     }
 
@@ -34,11 +39,12 @@
         }
 
         @media (max-width: ($md2+px)) {
+            flex: 0 1 50%;
             padding: 0 10px;
         }
 
         @media (max-width: ($md3+px)) {
-            flex: 0 1 50%;
+            padding: 0 7px;
         }
     }
 

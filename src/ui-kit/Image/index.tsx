@@ -6,12 +6,13 @@ import classes from "./AdaptiveImage.module.scss";
 interface IAdaptiveImageProps {
     className?: string;
     url: string;
+    children?: React.ReactNode
 }
 
-export const AdaptiveImage: React.FC<IAdaptiveImageProps> = ({ url, className, children }) => {
+export const AdaptiveImage = React.forwardRef<HTMLDivElement, IAdaptiveImageProps>(({ url, className, children }, ref) => {
     return (
-        <div className={clsx(classes.image, className)} style={{ backgroundImage: `url(${url})` }}>
+        <div ref={ref} className={clsx(classes.image, className)} style={{ backgroundImage: `url(${url})` }}>
             {children}
         </div>
     );
-};
+});

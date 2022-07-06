@@ -1,0 +1,30 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.news-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    &__image {
+        padding: 0 0 251px/391px * 100% 0;
+    }
+
+    &__body {
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        padding: 16px;
+        @include adaptive-value('padding', 16, 8, 1);
+    }
+
+    &__title {
+        margin: 0 0 8px 0;
+        flex: 1 1 auto;
+    }
+
+
+    &__date {
+
+    }
+}

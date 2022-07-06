@@ -1,11 +1,11 @@
 @import 'styles/variables.scss';
 
 .search {
-    padding: 0 15px 0 0;
+    padding: 0 3px 0 0;
     background: $whiteColor;
     display: flex;
     &__icon-button {
-        padding: 0 15px;
+        padding: 0 3px 0 15px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -19,15 +19,5 @@
 
     &__input-wrapper {
         flex: 1 1 auto;
-    }
-
-    &__input {
-        width: 100%;
-        padding: 15px 0;
-        font-size: 14px;
-        color: $blackColor;
-        &::placeholder {
-            color: $darkGrayColor;
-        }
     }
 }
