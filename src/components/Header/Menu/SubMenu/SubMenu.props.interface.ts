@@ -1,5 +1,5 @@
-import { ISubMenuItem } from "./SubMenuItem.interface";
+import { ISubMenuItem } from './SubMenuItem.interface';
 
 export interface ISubMenuProps {
-    items: ISubMenuItem[];
+	items: ISubMenuItem[];
 }

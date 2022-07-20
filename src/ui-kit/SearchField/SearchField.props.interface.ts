@@ -1,4 +1,4 @@
 export interface ISearchFieldProps {
-    className?: string;
-    placeholder?: string;
+	className?: string;
+	placeholder?: string;
 }

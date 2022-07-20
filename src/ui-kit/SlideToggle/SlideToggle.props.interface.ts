@@ -1,3 +1,3 @@
 export interface ISlideToggleProps {
-    open: boolean;
+	open: boolean;
 }

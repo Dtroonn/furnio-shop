@@ -1,11 +1,9 @@
-import React from "react";
+import React from 'react';
 
 export const useBreakpoint = (type: 'min-width' | 'max-width', pixeles: number): boolean => {
 	const mediaQueryList = window.matchMedia(`(${type}: ${pixeles}px)`);
 
-	const [isBreakpoint, setIsBreakpoint] = React.useState(
-		mediaQueryList.matches ? true : false
-	);
+	const [isBreakpoint, setIsBreakpoint] = React.useState(mediaQueryList.matches ? true : false);
 
 	React.useEffect(() => {
 		const handleBreakpointEvent = (e: MediaQueryListEvent) => {
@@ -15,7 +13,7 @@ export const useBreakpoint = (type: 'min-width' | 'max-width', pixeles: number):
 				setIsBreakpoint(false);
 			}
 		};
-		mediaQueryList.addEventListener('change', handleBreakpointEvent)
+		mediaQueryList.addEventListener('change', handleBreakpointEvent);
 		return () => {
 			mediaQueryList.removeEventListener('change', handleBreakpointEvent);
 		};

@@ -1,12 +1,12 @@
-import clsx from "clsx";
-import React from "react";
+import clsx from 'clsx';
+import React from 'react';
 
-import classes from "./SliderPagination.module.scss";
+import classes from './SliderPagination.module.scss';
 
 interface ISliderPaginationProps {
-    className?: string;
+	className?: string;
 }
 
 export const SliderPagination: React.FC<ISliderPaginationProps> = ({ className, children }) => {
-    return <div className={clsx(classes.pagination, className)}>{children}</div>;
+	return <div className={clsx(classes.pagination, className)}>{children}</div>;
 };

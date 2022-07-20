@@ -1,4 +1,4 @@
 export interface ISubMenuItem {
-    title: string;
-    src: string;
+	title: string;
+	src: string;
 }

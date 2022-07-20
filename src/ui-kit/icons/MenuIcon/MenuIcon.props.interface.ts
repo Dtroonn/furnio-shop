@@ -1,3 +1,3 @@
 export interface IMenuIconProps {
-    active?: boolean;
+	active?: boolean;
 }

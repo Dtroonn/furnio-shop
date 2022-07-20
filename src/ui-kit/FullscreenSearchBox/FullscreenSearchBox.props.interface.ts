@@ -1,4 +1,4 @@
 export interface IFullscreenSearchBoxProps {
-    open: boolean;
-    onClose: () => void;
+	open: boolean;
+	onClose: () => void;
 }

@@ -1,9 +1,9 @@
 export interface IFooterItem {
-    name: string;
-    to: string;
+	name: string;
+	to: string;
 }
 
 export interface IFooterItemProps {
-    title: string;
-    items: IFooterItem[];
+	title: string;
+	items: IFooterItem[];
 }

@@ -1,5 +1,5 @@
 export interface ITextFieldProps {
-    placeholder?: string;
-    className?: string;
-    fullWidth?: boolean;
+	placeholder?: string;
+	className?: string;
+	fullWidth?: boolean;
 }

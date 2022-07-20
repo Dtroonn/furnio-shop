@@ -1,0 +1,14 @@
+{
+	"extends": "./../common-tsconfig.json",
+	"compilerOptions": {
+		"target": "es6" /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */,
+		"experimentalDecorators": true /* Enable experimental support for TC39 stage 2 draft decorators. */,
+		"emitDecoratorMetadata": true /* Emit design-type metadata for decorated declarations in source files. */,
+		"baseUrl": "." /* Specify the base directory to resolve non-relative module names. */,
+		"strictPropertyInitialization": false,
+		"sourceMap": true,
+		"outDir": "./../dist_server"
+	},
+	"files": ["*.d.ts"],
+	"include": ["."]
+}
