@@ -9,21 +9,23 @@ function App() {
 	const [isLoading, setIsLoading] = React.useState(false);
 	const [lalka, setLalka] = React.useState();
 
-	const handleClick = async () => {
+	const handleClick = () => {
 		console.log('LOADING PRI VHODE V FUNC', isLoading);
 		setIsLoading((prev) => !prev);
-		//@ts-ignore
-		setLalka(isLoading);
-		await new Promise((resolve, reject) => {
-			setTimeout(() => {
-				resolve(true);
-			}, 1000);
-		});
+		// await new Promise((resolve, reject) => {
+		// 	setTimeout(() => {
+		// 		resolve(true);
+		// 	}, 1000);
+		// });
 		console.log('AFTER SET STATE:', isLoading);
+		setIsLoading((prev) => {
+			console.log('AFTER SET STATE IN SET STATE WITH PREV:', prev);
+			return prev;
+		});
 	};
 
-	console.log('LALKA', lalka);
-	console.log(isLoading);
+	// console.log('LALKA', lalka);
+	// console.log(isLoading);
 
 	return (
 		<div className="App">

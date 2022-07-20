@@ -1,0 +1,17 @@
+.accordion {
+    &__header {
+        display: flex;
+        padding: 16px;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    &__icon {
+        margin: 0 0 0 15px;
+    }
+
+    &__body {
+        padding: 4px 16px 16px 16px;
+    }
+}

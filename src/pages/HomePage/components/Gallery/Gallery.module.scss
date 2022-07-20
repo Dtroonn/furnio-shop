@@ -2,7 +2,7 @@
 @import 'styles/mixins.scss';
 
 .gallery {
-    @include adaptive-value('margin-bottom', 85, 25, 1);
+    @include adaptive-value('margin-bottom', 85, 15, 1);
     &__head-block {
         text-align: center;
         margin-bottom: 0 0 -16px 0;
