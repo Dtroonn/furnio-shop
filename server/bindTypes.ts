@@ -9,4 +9,7 @@ export const BIND_TYPES = {
 	PrismaService: Symbol.for('PrismaService'),
 	IJwtService: Symbol.for('IJwtService'),
 	ITokenRepository: Symbol.for('ITokenRepository'),
+	IProductsRepository: Symbol.for('IProductsRepository'),
+	IProductsService: Symbol.for('IProductsService'),
+	IProductsController: Symbol.for('IProductsController'),
 };

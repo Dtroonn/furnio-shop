@@ -2,7 +2,7 @@
   "extends": "./common-tsconfig.json",
   "compilerOptions": {
     "baseUrl": "src",
-    "target": "es5",
+    "target": "ESNext",
     "noEmit": true,
     "lib": [
       "dom",
@@ -17,6 +17,7 @@
       "hooks": ["hooks"],
       "styles": ["styles"],
       "assets": ["assets"],
+      "common": ["common"],
     },
     "jsx": "react-jsx",
   },

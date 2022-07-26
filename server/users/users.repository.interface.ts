@@ -1,9 +1,9 @@
-import { User as UserType } from '@prisma/client';
-import { User } from './user.entity';
+import { User } from '@prisma/client';
+import { UserEntity } from './user.entity';
 
 export interface IUsersRepository {
-	create: (user: User) => Promise<UserType>;
-	findById: (id: number) => Promise<UserType | null>;
-	findByVkId: (vkId: number) => Promise<UserType | null>;
-	update: (id: number, user: Partial<UserType>) => Promise<UserType>;
+	create: (user: UserEntity) => Promise<User>;
+	findById: (id: number) => Promise<User | null>;
+	findByVkId: (vkId: number) => Promise<User | null>;
+	update: (id: number, user: Partial<User>) => Promise<User>;
 }

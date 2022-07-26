@@ -1,9 +1,9 @@
 import { excludeKeyFromObj } from './../common/utils/excludeKeyFromObj';
 import { PrismaService } from './../database/prisma.service';
 import { BIND_TYPES } from './../bindTypes';
-import { User as UserType } from '@prisma/client';
+import { User } from '@prisma/client';
 import { inject, injectable } from 'inversify';
-import { User } from './user.entity';
+import { UserEntity } from './user.entity';
 import { IUsersRepository } from './users.repository.interface';
 import 'reflect-metadata';
 
@@ -11,13 +11,13 @@ import 'reflect-metadata';
 export class UsersRepository implements IUsersRepository {
 	constructor(@inject(BIND_TYPES.PrismaService) private prismaService: PrismaService) {}
 
-	async create(user: User): Promise<UserType> {
+	async create(user: UserEntity): Promise<User> {
 		return this.prismaService.client.user.create({
 			data: user.data,
 		});
 	}
 
-	async findById(id: number): Promise<UserType | null> {
+	async findById(id: number): Promise<User | null> {
 		return this.prismaService.client.user.findFirst({
 			where: {
 				id,
@@ -25,7 +25,7 @@ export class UsersRepository implements IUsersRepository {
 		});
 	}
 
-	async findByVkId(vkId: number): Promise<UserType | null> {
+	async findByVkId(vkId: number): Promise<User | null> {
 		return this.prismaService.client.user.findFirst({
 			where: {
 				vkId,
@@ -33,7 +33,7 @@ export class UsersRepository implements IUsersRepository {
 		});
 	}
 
-	async update(id: number, user: Partial<UserType>): Promise<UserType> {
+	async update(id: number, user: Partial<User>): Promise<User> {
 		return this.prismaService.client.user.update({
 			where: {
 				id: id,

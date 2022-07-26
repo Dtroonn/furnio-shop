@@ -1,3 +1,5 @@
+import { ProductsRepository } from './products/products.repository';
+import { ProductsController } from './products/products.controller';
 import { TokenRepository } from './jwt/token.repository';
 import { IJwtService } from './jwt/jwt.service.interface';
 import { IUsersRepository } from './users/users.repository.interface';
@@ -21,6 +23,11 @@ import { UsersRepository } from './users/users.repository';
 import { JwtService } from './jwt/jwt.service';
 import { ITokenRepository } from 'jwt/token.repository.interface';
 
+import { IProductsController } from './products/products.controller.interface';
+import { IProductsService } from './products/products.service.interface';
+import { ProductsService } from './products/products.service';
+import { IProductsRepository } from './products/products.repository.interface';
+
 export interface IBootstrapReturn {
 	app: App;
 	appContainer: Container;
@@ -37,6 +44,10 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
 	bind<PrismaService>(BIND_TYPES.PrismaService).to(PrismaService).inSingletonScope();
 	bind<IJwtService>(BIND_TYPES.IJwtService).to(JwtService).inSingletonScope();
 	bind<ITokenRepository>(BIND_TYPES.ITokenRepository).to(TokenRepository);
+
+	bind<IProductsController>(BIND_TYPES.IProductsController).to(ProductsController);
+	bind<IProductsService>(BIND_TYPES.IProductsService).to(ProductsService);
+	bind<IProductsRepository>(BIND_TYPES.IProductsRepository).to(ProductsRepository);
 });
 
 const bootstrap = async (): Promise<IBootstrapReturn> => {

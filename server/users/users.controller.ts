@@ -6,7 +6,7 @@ import { BaseController } from '../common/base.controller';
 import { NextFunction, query, Request, Response, Router } from 'express';
 import 'reflect-metadata';
 import { inject, injectable } from 'inversify';
-import { User as UserType } from '@prisma/client';
+import { User } from '@prisma/client';
 import { IUsersService } from './users.service.interface';
 import { IJwtService } from 'jwt/jwt.service.interface';
 import { excludeKeyFromObj } from '../common/utils/excludeKeyFromObj';
@@ -63,44 +63,51 @@ export class UsersController extends BaseController implements IUsersController 
 			const { code } = req.query;
 
 			const user = await this.usersService.vkLogin(code as string);
-			await this.resUserAndTokens(res, user);
+			await this.resUserAndTokens(res, user, true);
 		} catch (err) {
 			next(err);
 		}
 	}
 
 	async refresh(req: Request, res: Response, next: NextFunction): Promise<void> {
+		//@ts-ignore
+		console.log('HELLO', req.session.id);
 		const { refreshToken } = req.cookies;
 		try {
 			if (!refreshToken) {
-				return next(new HTTPError(401, 'токена нет в куки'));
+				return next(new HTTPError(401, ''));
 			}
 
 			const [jwtPayload, jwtTokenFromDb] = await Promise.all([
-				this.jwtService.verify<UserType>(
+				this.jwtService.verify<User>(
 					refreshToken,
 					this.configService.get('AUTH_JWT_REFRESH_TOKEN'),
 				),
 				this.jwtService.findToken(refreshToken),
 			]);
 			if (!jwtPayload || !jwtTokenFromDb) {
-				return next(new HTTPError(401, 'пейлоад пустой. либо не нашел в бд'));
+				return next(new HTTPError(401, ''));
 			}
 
 			const user = await this.usersService.findById(jwtPayload.id);
 			if (!user) {
-				return next(new HTTPError(400, 'Такой пользователь не найден'));
+				return next(new HTTPError(400, ''));
 			}
 
 			await this.resUserAndTokens(res, user);
+			this.jwtService.deleteToken(refreshToken);
 		} catch (err) {
 			next(err);
 		} finally {
-			this.jwtService.deleteToken(refreshToken);
+			// this.jwtService.deleteToken(refreshToken);
 		}
 	}
 
-	private async resUserAndTokens(res: Response, user: UserType): Promise<void> {
+	private async resUserAndTokens(
+		res: Response,
+		user: User,
+		resForOtherWindow?: boolean,
+	): Promise<void> {
 		const userWithoutPassword = excludeKeyFromObj(user, 'password');
 		//Возможно вынести работу с токенами авторизации сюда
 		const tokens = await this.jwtService.signAuthTokens(userWithoutPassword);
@@ -111,11 +118,22 @@ export class UsersController extends BaseController implements IUsersController 
 			maxAge: 1 * 24 * 60 * 60 * 1000,
 		});
 
-		this.ok(res, {
+		const resData = {
 			user: userWithoutPassword,
 			accessToken: tokens.accessToken,
 			refreshToken: tokens.refreshToken,
-		});
+		};
+		if (resForOtherWindow) {
+			res.send(
+				`<script>window.opener.postMessage(${JSON.stringify({
+					data: resData,
+					from: 'furnio',
+				})}, '*');window.close()</script>`,
+			);
+			return;
+		}
+
+		this.ok(res, resData);
 	}
 
 	async get(req: Request, res: Response, next: NextFunction): Promise<void> {

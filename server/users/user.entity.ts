@@ -1,17 +1,17 @@
-import { User as UserType } from '@prisma/client';
+import { User } from '@prisma/client';
 
-export interface IUser extends Omit<UserType, 'id'> {
+export interface IUserEntity extends Omit<User, 'id'> {
 	id?: number;
 }
 
-export class User {
-	private readonly _data: IUser;
+export class UserEntity {
+	private readonly _data: IUserEntity;
 
-	constructor(user: IUser) {
+	constructor(user: IUserEntity) {
 		this._data = user;
 	}
 
-	get data(): Readonly<IUser> {
+	get data(): Readonly<IUserEntity> {
 		return this._data;
 	}
 

@@ -3,7 +3,7 @@ import { IMiddleware } from './middleware.interface';
 import { NextFunction, Response, Request } from 'express';
 import { inject, injectable } from 'inversify';
 import { IJwtService } from 'jwt/jwt.service.interface';
-import { User as UserType } from '@prisma/client';
+import { User as User } from '@prisma/client';
 import { IConfigSerivice } from 'config/config.service.interface';
 
 @injectable()
@@ -12,7 +12,7 @@ export class AuthMiddleware implements IMiddleware {
 	async execute(req: Request, res: Response, next: NextFunction): Promise<void> {
 		const token = req.headers.authorization?.split(' ').pop();
 		if (token) {
-			const user = await this.jwtService.verify<Omit<UserType, 'id'>>(
+			const user = await this.jwtService.verify<Omit<User, 'id'>>(
 				token,
 				this.configService.get('AUTH_JWT_ACCESS_TOKEN'),
 			);

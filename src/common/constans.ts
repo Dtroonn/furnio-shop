@@ -5,3 +5,5 @@ export const breakpointsTypes = {
 	md4: 479.98,
 	minWidth: 320,
 };
+
+export const API_AUTH_REFRESH_ENDPOINT = '/api/users/refresh';

@@ -6,8 +6,8 @@ import axios from 'axios';
 import { IVkOAuthRes, IVkUserRes } from './types/vk.responses.interfaces';
 import { inject, injectable } from 'inversify';
 import 'reflect-metadata';
-import { User as UserType } from '@prisma/client';
-import { IUser, User } from './user.entity';
+import { User } from '@prisma/client';
+import { IUserEntity, UserEntity } from './user.entity';
 import { IUsersRepository } from './users.repository.interface';
 
 @injectable()
@@ -17,7 +17,7 @@ export class UsersService implements IUsersService {
 		@inject(BIND_TYPES.IUsersRepository) private usersRepository: IUsersRepository,
 	) {}
 
-	async vkLogin(code: string): Promise<UserType> {
+	async vkLogin(code: string): Promise<User> {
 		const oauthRes = await axios.get<IVkOAuthRes>('https://oauth.vk.com/access_token', {
 			params: {
 				client_id: this.configService.get('VK_CLIENT_ID'),
@@ -44,7 +44,7 @@ export class UsersService implements IUsersService {
 
 		const { first_name, last_name, photo_200_orig } = userRes.data.response[0];
 
-		const userData: IUser = {
+		const userData: IUserEntity = {
 			firstName: first_name,
 			lastName: last_name,
 			photoUrl: photo_200_orig,
@@ -68,12 +68,12 @@ export class UsersService implements IUsersService {
 			return candidate;
 		}
 
-		const user = new User(userData);
+		const user = new UserEntity(userData);
 
 		return this.usersRepository.create(user);
 	}
 
-	async findById(id: number): Promise<UserType | null> {
+	async findById(id: number): Promise<User | null> {
 		return this.usersRepository.findById(id);
 	}
 }
