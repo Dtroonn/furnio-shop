@@ -72,6 +72,8 @@ body {
     width: 100%;
     min-height: 100%;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 //</ОБОЛОЧКА>===========================================================================================================
 
@@ -93,7 +95,15 @@ body {
 }
 //</ОСНОВНАЯ СЕТКА>===========================================================================================================
 
+.App {
+    min-height: 100%;
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
 main {
+    flex: 1 1 auto;
     @media (max-width: ($md2+px)) {
         padding: 60px 0 0 0;
     }

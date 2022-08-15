@@ -15,11 +15,31 @@
             background: $darkOrangeColor;
            }
         }
+        &:disabled {
+            background: #eec9b2;
+        }
     }
 
     &_white {
         background: $whiteColor;
         color: $orangeColor;
+        &:disabled {
+            background: rgba(365, 365, 365, 0.7);
+        }
+    }
+
+    &_red {
+        background: $redColor;
+        color: $whiteColor;
+        @media (any-hover: hover) {
+            &:hover {
+                background: $darkRedColor;
+            }
+         }
+
+         &:disabled {
+            background: #ea9090;
+        }
     }
 
     &_big {
@@ -41,5 +61,9 @@
 
     &_outline {
         border: 1px solid $orangeColor;
+    }
+
+    &:disabled {
+        cursor: auto;
     }
 }

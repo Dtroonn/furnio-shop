@@ -45,13 +45,28 @@ export class ProductsController extends BaseController implements IProductsContr
 	async get(req: Request, res: Response, next: NextFunction): Promise<void> {
 		try {
 			const { page, limit } = req.query;
+			const { user, session } = req;
 
 			const myPage = page || 1;
 			const myLimit = limit || 10;
 
-			const products = await this.productsService.get(+myPage, +myLimit);
+			let productsPromise;
 
-			this.ok(res, products);
+			if (user) {
+				productsPromise = this.productsService.get(+myPage, +myLimit, null, user.id);
+			} else {
+				productsPromise = this.productsService.get(+myPage, +myLimit, session.id, null);
+			}
+
+			const [products, count] = await Promise.all([
+				productsPromise,
+				this.productsService.getCount(),
+			]);
+
+			this.ok(res, {
+				data: products,
+				count,
+			});
 		} catch (e) {
 			next(e);
 		}

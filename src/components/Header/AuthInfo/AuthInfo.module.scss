@@ -1,0 +1,44 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.loginButton {
+    cursor: pointer;
+    &__text {
+        transition: all 0.3s ease 0s;
+        &:hover {
+            color: $orangeColor;
+        }
+    }
+}
+
+
+.auth-info {
+    position: relative;
+    &__avatar-wrapper {
+        cursor: pointer;
+    }
+}
+
+.auth-info-menu {
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    background-color: $whiteColor;
+    box-shadow: 0px 4px 14px 1px rgba(0, 0, 0, 0.16);
+    transition: all 0.3s ease 0s;
+    transform: scale(0);
+    &.active {
+        transform: scale(1) translateX(-50%);
+    }
+    li {
+        cursor: pointer;
+        padding: 10px 15px;
+        white-space: nowrap;
+        transition: all 0.3s ease 0s;
+        @media (any-hover: hover) {
+            &:hover {
+                background-color: #F9F1E7;;
+            }
+        }
+    }
+}

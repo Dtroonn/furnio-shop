@@ -9,7 +9,7 @@ import { IAccordionProps } from './Accordion.props';
 export const Accordion: React.FC<IAccordionProps> = ({ title, className, children }) => {
 	const [open, setOpen] = React.useState<boolean>(false);
 
-	const toggleOpen = () => {
+	const toggleOpen = (): void => {
 		setOpen((prev) => !prev);
 	};
 

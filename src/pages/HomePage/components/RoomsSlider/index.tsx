@@ -10,7 +10,6 @@ import { Text } from 'ui-kit/Text';
 import classes from './RoomsSlider.module.scss';
 import { breakpointsTypes } from 'common/constans';
 import { AdaptiveImage } from 'ui-kit/Image';
-import { Link } from 'react-router-dom';
 
 import './RoomsSlider.scss';
 import sliderRoomPng from 'assets/sliderRoom.png';
@@ -18,7 +17,7 @@ import { SliderArrow } from 'ui-kit/SliderArrow';
 import { Icon } from 'ui-kit/Icon';
 import { useBreakpoint } from 'hooks/useBreakpoint';
 
-export const RoomsSlider = () => {
+export const RoomsSlider: React.FC = () => {
 	const isMd1 = useBreakpoint('max-width', breakpointsTypes.md1 + 48);
 
 	return (
@@ -65,7 +64,7 @@ export const RoomsSlider = () => {
 						}}
 						className={clsx(classes['slider-rooms__slider'], 'slider-rooms')}
 					>
-						{Array(4)
+						{Array(6)
 							.fill(0)
 							.map((_, index) => (
 								<SwiperSlide key={index} className={classes['slider-rooms__slide']}>

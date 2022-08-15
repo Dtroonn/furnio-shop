@@ -12,4 +12,8 @@ export const BIND_TYPES = {
 	IProductsRepository: Symbol.for('IProductsRepository'),
 	IProductsService: Symbol.for('IProductsService'),
 	IProductsController: Symbol.for('IProductsController'),
+
+	ICartProductsController: Symbol.for('ICartProductsController'),
+	ICartProductsService: Symbol.for('ICartProductsService'),
+	ICartProductsRepository: Symbol.for('ICartProductsRepository'),
 };

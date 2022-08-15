@@ -1,0 +1,22 @@
+.skeleton {
+    &__image {
+        padding: 0 0 301px/285px * 100% 0;
+        height: 0;
+        margin: 0 0 16px 0;
+    }
+
+
+    &__title {
+        width: 40% !important;
+        margin: 0 0 10px 0;
+    }
+
+    &__subtitle {
+        width: 55% !important;
+        margin: 0 0 10px 0;
+    }
+
+    &__price {
+        width: 45% !important;
+    }
+}

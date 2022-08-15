@@ -27,6 +27,12 @@ import { IProductsController } from './products/products.controller.interface';
 import { IProductsService } from './products/products.service.interface';
 import { ProductsService } from './products/products.service';
 import { IProductsRepository } from './products/products.repository.interface';
+import { ICartProductsController } from './cartProducts/cartProducts.controller.interface';
+import { CartProductsController } from './cartProducts/cartProducts.controller';
+import { ICartProductsService } from './cartProducts/cartProducts.service.interface';
+import { CartProductsService } from './cartProducts/cartProducts.service';
+import { ICartProductsRepository } from './cartProducts/cartProducts.repository.interface';
+import { CartProductsRepository } from './cartProducts/cartProducts.repository';
 
 export interface IBootstrapReturn {
 	app: App;
@@ -48,6 +54,10 @@ export const appBindings = new ContainerModule((bind: interfaces.Bind) => {
 	bind<IProductsController>(BIND_TYPES.IProductsController).to(ProductsController);
 	bind<IProductsService>(BIND_TYPES.IProductsService).to(ProductsService);
 	bind<IProductsRepository>(BIND_TYPES.IProductsRepository).to(ProductsRepository);
+
+	bind<ICartProductsController>(BIND_TYPES.ICartProductsController).to(CartProductsController);
+	bind<ICartProductsService>(BIND_TYPES.ICartProductsService).to(CartProductsService);
+	bind<ICartProductsRepository>(BIND_TYPES.ICartProductsRepository).to(CartProductsRepository);
 });
 
 const bootstrap = async (): Promise<IBootstrapReturn> => {

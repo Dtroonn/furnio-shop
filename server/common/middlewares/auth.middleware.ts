@@ -12,7 +12,7 @@ export class AuthMiddleware implements IMiddleware {
 	async execute(req: Request, res: Response, next: NextFunction): Promise<void> {
 		const token = req.headers.authorization?.split(' ').pop();
 		if (token) {
-			const user = await this.jwtService.verify<Omit<User, 'id'>>(
+			const user = await this.jwtService.verify<Omit<User, 'password'>>(
 				token,
 				this.configService.get('AUTH_JWT_ACCESS_TOKEN'),
 			);

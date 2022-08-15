@@ -1,13 +1,13 @@
 import { useIntersection } from 'hooks/useIntersection';
 import React from 'react';
 import { AdaptiveImage } from 'ui-kit/Image';
+import { ILazyImgProps } from './LazyImg.props';
 
-//@ts-ignore
-export const LazyImg = ({ url, className }) => {
+export const LazyImg: React.FC<ILazyImgProps> = ({ url, className }) => {
 	const [isShowImg, setIsShowImg] = React.useState(false);
 	const imgRef = React.useRef(null);
 
-	const handleIntersected = () => {
+	const handleIntersected = (): void => {
 		setIsShowImg(true);
 	};
 

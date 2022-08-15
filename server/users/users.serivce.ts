@@ -9,15 +9,17 @@ import 'reflect-metadata';
 import { User } from '@prisma/client';
 import { IUserEntity, UserEntity } from './user.entity';
 import { IUsersRepository } from './users.repository.interface';
+import { ICartProductsService } from 'cartProducts/cartProducts.service.interface';
 
 @injectable()
 export class UsersService implements IUsersService {
 	constructor(
 		@inject(BIND_TYPES.IConfigService) private configService: IConfigSerivice,
 		@inject(BIND_TYPES.IUsersRepository) private usersRepository: IUsersRepository,
+		@inject(BIND_TYPES.ICartProductsService) private cartProductsService: ICartProductsService,
 	) {}
 
-	async vkLogin(code: string): Promise<User> {
+	async vkLogin(code: string, sessionId: string): Promise<User> {
 		const oauthRes = await axios.get<IVkOAuthRes>('https://oauth.vk.com/access_token', {
 			params: {
 				client_id: this.configService.get('VK_CLIENT_ID'),
@@ -56,13 +58,25 @@ export class UsersService implements IUsersService {
 		const candidate = await this.usersRepository.findByVkId(user_id);
 
 		if (candidate) {
+			const userCartProductCount = await this.cartProductsService.getСount(null, candidate.id);
 			if (
 				candidate.email !== userData.email ||
 				candidate.firstName !== userData.firstName ||
 				candidate.lastName !== userData.lastName ||
 				candidate.photoUrl !== userData.photoUrl
 			) {
-				return this.usersRepository.update(user_id, userData);
+				const [user] = await Promise.all([
+					this.usersRepository.update(user_id, userData),
+					userCartProductCount
+						? null
+						: this.cartProductsService.updateCartProductsUserIdBySessionId(sessionId, candidate.id),
+				]);
+
+				return user;
+			}
+
+			if (!userCartProductCount) {
+				await this.cartProductsService.updateCartProductsUserIdBySessionId(sessionId, candidate.id);
 			}
 
 			return candidate;
@@ -70,7 +84,10 @@ export class UsersService implements IUsersService {
 
 		const user = new UserEntity(userData);
 
-		return this.usersRepository.create(user);
+		const userFromBd = await this.usersRepository.create(user);
+		await this.cartProductsService.updateCartProductsUserIdBySessionId(sessionId, userFromBd.id);
+
+		return userFromBd;
 	}
 
 	async findById(id: number): Promise<User | null> {

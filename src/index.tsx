@@ -3,21 +3,20 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
+import { ResetRecoilAndMountTreeProvider } from 'recoil/ResetRecoilAndMountTreeProvider';
 import { store } from 'redux/store';
+import { Button } from 'ui-kit/Button';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './styles/index.scss';
 
 ReactDOM.render(
-	<React.StrictMode>
-		<Provider store={store}>
-			<RecoilRoot>
-				<BrowserRouter>
-					<App />
-				</BrowserRouter>
-			</RecoilRoot>
-		</Provider>
-	</React.StrictMode>,
+	<BrowserRouter>
+		<ResetRecoilAndMountTreeProvider>
+			<App />
+		</ResetRecoilAndMountTreeProvider>
+	</BrowserRouter>,
+
 	document.getElementById('root'),
 );
 

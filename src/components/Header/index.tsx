@@ -4,28 +4,23 @@ import clsx from 'clsx';
 import { Menu } from './Menu';
 import { Link } from 'react-router-dom';
 import { Icon } from 'ui-kit/Icon';
-import { Avatar } from 'ui-kit/Avatar';
-import { Text } from 'ui-kit/Text';
 
-import avaBaskov from 'assets/baskov.jpg';
 import { useBreakpoint } from 'hooks/useBreakpoint';
 import { breakpointsTypes } from 'common/constans';
 import { Search } from './Search';
-import { injectable } from 'inversify';
-import { useSelector } from 'react-redux';
-import { RootState } from 'redux/store';
-import { useRecoilValueLoadable } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import { authUserState } from 'recoil/auth/states/authUser.state';
+import { AuthInfo } from './AuthInfo';
+import { Badge } from 'ui-kit/Badge';
+import { cartProductsCountState } from 'recoil/cart/states/cartProductsCount.state';
 
 export const Md2Headercontext = React.createContext<boolean>(false);
 
 export const Header: React.FC = () => {
 	const isMd2 = useBreakpoint('max-width', breakpointsTypes.md2);
-	// const user = useSelector((state: RootState) => state.auth.user);
 
-	const userLoadble = useRecoilValueLoadable(authUserState);
-
-	console.log('from header', userLoadble);
+	const user = useRecoilValue(authUserState);
+	const cartProductsCount = useRecoilValue(cartProductsCountState);
 
 	return (
 		<Md2Headercontext.Provider value={isMd2}>
@@ -64,16 +59,20 @@ export const Header: React.FC = () => {
 							)}
 							<div className={classes['actions-header__item']}>
 								<Link to="/favorites" className={classes['actions-header__link']}>
-									<Icon icon="like" className={classes['actions-header__icon']} />
+									<Badge content={null}>
+										<Icon icon="like" className={classes['actions-header__icon']} />
+									</Badge>
 								</Link>
 							</div>
 							<div className={classes['actions-header__item']}>
 								<Link to="/cart" className={classes['actions-header__link']}>
-									<Icon icon="cart" className={classes['actions-header__icon']} />
+									<Badge content={cartProductsCount ? cartProductsCount : null}>
+										<Icon icon="cart" className={classes['actions-header__icon']} />
+									</Badge>
 								</Link>
 							</div>
 							<div className={classes['actions-header__item']}>
-								<Avatar url={userLoadble.contents?.photoUrl || avaBaskov} />
+								<AuthInfo user={user} />
 							</div>
 							{isMd2 && (
 								<div

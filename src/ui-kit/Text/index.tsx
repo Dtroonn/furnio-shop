@@ -6,6 +6,7 @@ import classes from './Text.module.scss';
 const sizesClasses = {
 	h1: classes.h1,
 	h2: classes.h2,
+	h3: classes.h3,
 	h4: classes.h4,
 	h5: classes.h5,
 	body1: classes.body1,

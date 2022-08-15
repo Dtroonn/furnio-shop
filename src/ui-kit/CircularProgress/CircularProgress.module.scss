@@ -1,0 +1,38 @@
+@import 'styles/variables.scss';
+@import 'styles/mixins.scss';
+
+.circularProgress {
+    animation: rotate 1.5s linear infinite; 
+    border-radius: 50%;
+    border-top: 2px solid transparent;
+    &.white {
+        border-right: 3px solid $whiteColor;
+        border-left: 3px solid $whiteColor;
+        border-bottom:  3px solid $whiteColor;
+    }
+
+    &.orange {
+        border-right: 3px solid $orangeColor;
+        border-left: 3px solid $orangeColor;
+        border-bottom:  3px solid $orangeColor;
+    }
+    
+    &.medium {
+        width: 30px;
+        height: 30px;
+    }
+
+    &.big {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@keyframes rotate{
+    from {
+        transform: rotate(0deg);
+    }
+    to{ 
+        transform: rotate(360deg); 
+    }
+  }

@@ -9,12 +9,18 @@ import classes from './Product.module.scss';
 import { IProductProps } from './Product.props.interface';
 
 export const Product: React.FC<IProductProps> = ({
+	id,
 	imgUrl,
 	name,
 	description,
 	price,
 	oldPrice,
+	onAddToCart,
+	onRemoveFromCart,
+	cartProduct,
 }) => {
+	const [isLoading, setIsLoading] = React.useState(false);
+
 	const [showBackgroundContent, setShowBackgroundContent] = React.useState(false);
 	const touchStartCoordsRef = React.useRef<{ x: number; y: number }>({ x: 0, y: 0 });
 
@@ -34,6 +40,22 @@ export const Product: React.FC<IProductProps> = ({
 	const handleTouchEnd = (event: React.TouchEvent): void => {
 		if (touchStartCoordsRef.current.x - event.changedTouches[0].screenX > 50) {
 			setShowBackgroundContent(true);
+		}
+	};
+
+	const handleClickAddToCart = async (): Promise<void> => {
+		if (onAddToCart) {
+			setIsLoading(true);
+			await onAddToCart(id);
+			setIsLoading(false);
+		}
+	};
+
+	const handleClickRemoveFromCart = async (): Promise<void> => {
+		if (onRemoveFromCart && cartProduct) {
+			setIsLoading(true);
+			await onRemoveFromCart(cartProduct.id, id);
+			setIsLoading(false);
 		}
 	};
 
@@ -85,15 +107,30 @@ export const Product: React.FC<IProductProps> = ({
 				})}
 			>
 				<div className={classes['background-content__body']}>
-					<Button color="white" className={classes['background-content__btn']}>
-						Add to cart
+					<Button
+						loading={isLoading}
+						onClick={cartProduct ? handleClickRemoveFromCart : handleClickAddToCart}
+						color={cartProduct ? 'red' : 'white'}
+						className={classes['background-content__btn']}
+					>
+						{cartProduct ? 'Remove from cart' : 'Add to cart'}
 					</Button>
 					<div className={classes['background-content__actions']}>
-						<div className={classes['background-content-action']}>
+						<div
+							className={clsx(
+								classes['background-content-action'],
+								classes['background-content-action_share'],
+							)}
+						>
 							<Icon className={classes['background-content-action__icon']} icon="share" />
 							<div className={classes['background-content-action__text']}>Share</div>
 						</div>
-						<div className={classes['background-content-action']}>
+						<div
+							className={clsx(
+								classes['background-content-action'],
+								classes['background-content-action_like'],
+							)}
+						>
 							<Icon
 								className={clsx(
 									classes['background-content-action__icon'],

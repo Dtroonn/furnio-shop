@@ -1,3 +1,4 @@
+import { ICartProductsService } from './../cartProducts/cartProducts.service.interface';
 import { IConfigSerivice } from './../config/config.service.interface';
 import { BIND_TYPES } from './../bindTypes';
 import { IRoute } from './../common/route.interface';
@@ -15,6 +16,11 @@ import { HTTPError } from '../errors/http-error.class';
 @injectable()
 export class UsersController extends BaseController implements IUsersController {
 	private readonly routes: IRoute[] = [
+		{
+			func: this.getActivitiesInfo,
+			method: 'get',
+			path: '/activities-info',
+		},
 		{
 			func: this.vkLogin,
 			method: 'get',
@@ -41,6 +47,7 @@ export class UsersController extends BaseController implements IUsersController 
 		@inject(BIND_TYPES.IConfigService) private configService: IConfigSerivice,
 		@inject(BIND_TYPES.IUsersService) private usersService: IUsersService,
 		@inject(BIND_TYPES.IJwtService) private jwtService: IJwtService,
+		@inject(BIND_TYPES.ICartProductsService) private cartProductsService: ICartProductsService,
 	) {
 		super();
 		this.bindRoutes(this.routes);
@@ -62,7 +69,7 @@ export class UsersController extends BaseController implements IUsersController 
 		try {
 			const { code } = req.query;
 
-			const user = await this.usersService.vkLogin(code as string);
+			const user = await this.usersService.vkLogin(code as string, req.session.id);
 			await this.resUserAndTokens(res, user, true);
 		} catch (err) {
 			next(err);
@@ -70,8 +77,6 @@ export class UsersController extends BaseController implements IUsersController 
 	}
 
 	async refresh(req: Request, res: Response, next: NextFunction): Promise<void> {
-		//@ts-ignore
-		console.log('HELLO', req.session.id);
 		const { refreshToken } = req.cookies;
 		try {
 			if (!refreshToken) {
@@ -148,6 +153,22 @@ export class UsersController extends BaseController implements IUsersController 
 			const userWithoutPassword = excludeKeyFromObj(user, 'password');
 
 			this.ok(res, userWithoutPassword);
+		} catch (err) {
+			next(err);
+		}
+	}
+
+	async getActivitiesInfo(req: Request, res: Response, next: NextFunction): Promise<void> {
+		const { session, user } = req;
+		try {
+			const cartProductsCount = await this.cartProductsService.getСount(
+				session.id,
+				user ? user.id : null,
+			);
+
+			this.ok(res, {
+				cartProductsCount,
+			});
 		} catch (err) {
 			next(err);
 		}

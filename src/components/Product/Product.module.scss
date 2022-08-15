@@ -115,6 +115,21 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: all 0.3s ease 0s;
+    &_like {
+        @media (any-hover: hover) {
+            &:hover {
+                color: $redColor;
+            }
+        }
+    }
+    &_share {
+        @media (any-hover: hover) {
+            &:hover {
+                color: $orangeColor;
+            }
+        }
+    }
     &__icon {
         margin: 0 10px 0 0;
         &_like {

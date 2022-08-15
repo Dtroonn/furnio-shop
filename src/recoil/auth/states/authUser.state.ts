@@ -2,7 +2,7 @@ import { User } from '@prisma/client';
 import { refreshAuthRequest } from 'api/users';
 import { atom } from 'recoil';
 
-export const authUserState = atom<null | Omit<User, 'password'>>({
+export const authUserState = atom({
 	key: 'authUserState',
 	default: (async (): Promise<Omit<User, 'password'> | null> => {
 		try {

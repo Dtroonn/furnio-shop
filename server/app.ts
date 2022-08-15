@@ -14,6 +14,7 @@ import { IJwtService } from 'jwt/jwt.service.interface';
 //@ts-ignore
 import expressSession from 'express-session';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
+import { ICartProductsController } from 'cartProducts/cartProducts.controller.interface';
 
 @injectable()
 export class App {
@@ -29,6 +30,8 @@ export class App {
 		@inject(BIND_TYPES.IConfigService) private configService: IConfigSerivice,
 		@inject(BIND_TYPES.IJwtService) private jwtService: IJwtService,
 		@inject(BIND_TYPES.IProductsController) private productsController: IProductsController,
+		@inject(BIND_TYPES.ICartProductsController)
+		private cartProductsController: ICartProductsController,
 	) {
 		this.app = express();
 		this.port = 7777;
@@ -37,6 +40,7 @@ export class App {
 	private useRoutes(): void {
 		this.app.use('/api/users', this.usersController.router);
 		this.app.use('/api/products', this.productsController.router);
+		this.app.use('/api/cart-products', this.cartProductsController.router);
 		// this.app.use('/lalka', (req, res) => {
 		// 	console.log(req.body);
 		// 	const piece = req.body.split('\n')[0];

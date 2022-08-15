@@ -2,9 +2,6 @@
 @import 'styles/mixins.scss';
 
 .products {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     @include adaptive-value('margin-bottom', 62, 25, 1);
     &__title {
         @include adaptive-value('margin-bottom', 32, 15, 1);
@@ -50,5 +47,7 @@
 
     &__btn {
         width: 245px;
+        display: flex;
+        margin: 0 auto;
     }
 }

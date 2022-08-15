@@ -37,6 +37,7 @@
         justify-content: space-between;
         position: relative;
         z-index: 2;
+        min-height: 40px;
     }
 }
 
@@ -105,10 +106,14 @@
 
     &__link {
         color: $mainColor;
-        transition: 0.3s ease 0s;
-        @media (min-width: ($md2+px)) {
+        @media (any-hover: hover) {
+            span {
+                transition: 0.3s ease 0s;
+            }
             &:hover {
-                color: $orangeColor;
+                span {
+                    color: $orangeColor;
+                }
             }
         }
     }
